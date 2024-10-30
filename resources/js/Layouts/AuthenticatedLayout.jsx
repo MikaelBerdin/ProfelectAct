@@ -52,9 +52,8 @@ export default function AuthenticatedLayout({ header, children }) {
                                 className="relative w-12 h-6 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer flex items-center justify-between p-1"
                             >
                                 <div
-                                    className={`absolute top-0.5 left-0.5 w-5 h-5 flex items-center justify-center rounded-full text-sm transition-transform duration-300 transform ${
-                                        isDarkMode ? 'translate-x-6 bg-gray-900 text-white' : 'bg-yellow-400 text-yellow-700'
-                                    }`}
+                                    className={`absolute top-0.5 left-0.5 w-5 h-5 flex items-center justify-center rounded-full text-sm transition-transform duration-300 transform ${isDarkMode ? 'translate-x-6 bg-gray-900 text-white' : 'bg-yellow-400 text-yellow-700'
+                                        }`}
                                 >
                                     {isDarkMode ? '🌙' : '🌞'}
                                 </div>
@@ -100,11 +99,22 @@ export default function AuthenticatedLayout({ header, children }) {
 
                 {/* Mobile Navigation Menu */}
                 {isMobileMenuOpen && (
-                    <div className="sm:hidden absolute top-16 right-4 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg rounded-md p-4 space-y-4">
-                        <NavLink href={route('dashboard')} active={route().current('dashboard')} className="relative block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100">
+                    <div
+                        className="sm:hidden fixed top-16 right-4 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg rounded-md p-4 space-y-4 z-50"
+                        style={{ zIndex: 50 }}  // Ensure the mobile menu has the highest z-index
+                    >
+                        <NavLink
+                            href={route('dashboard')}
+                            active={route().current('dashboard')}
+                            className="relative block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100"
+                        >
                             Dashboard
                         </NavLink>
-                        <NavLink href={route('fast_food_chains.index')} active={route().current('fast_food_chains.index')} className="relative block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100">
+                        <NavLink
+                            href={route('fast_food_chains.index')}
+                            active={route().current('fast_food_chains.index')}
+                            className="relative block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100"
+                        >
                             Fast Food Chains
                         </NavLink>
 
@@ -118,9 +128,8 @@ export default function AuthenticatedLayout({ header, children }) {
                                 className="relative w-12 h-6 bg-gray-300 dark:bg-gray-600 rounded-full cursor-pointer flex items-center justify-between p-1"
                             >
                                 <div
-                                    className={`absolute top-0.5 left-0.5 w-5 h-5 flex items-center justify-center rounded-full text-xs transition-transform duration-300 transform ${
-                                        isDarkMode ? 'translate-x-6 bg-gray-900 text-white' : 'bg-yellow-400 text-yellow-700'
-                                    }`}
+                                    className={`absolute top-0.5 left-0.5 w-5 h-5 flex items-center justify-center rounded-full text-xs transition-transform duration-300 transform ${isDarkMode ? 'translate-x-6 bg-gray-900 text-white' : 'bg-yellow-400 text-yellow-700'
+                                        }`}
                                 >
                                     {isDarkMode ? '🌙' : '🌞'}
                                 </div>
@@ -128,14 +137,24 @@ export default function AuthenticatedLayout({ header, children }) {
                         </div>
 
                         {/* Profile Links */}
-                        <NavLink href={route('profile.edit')} active={route().current('profile.edit')} className="relative block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100">
+                        <NavLink
+                            href={route('profile.edit')}
+                            active={route().current('profile.edit')}
+                            className="relative block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100"
+                        >
                             Profile
                         </NavLink>
-                        <NavLink href={route('logout')} method="post" as="button" className="block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100">
+                        <NavLink
+                            href={route('logout')}
+                            method="post"
+                            as="button"
+                            className="block w-full text-left px-4 py-2 rounded text-gray-900 dark:text-gray-100"
+                        >
                             Log Out
                         </NavLink>
                     </div>
                 )}
+
             </nav>
 
             {/* Header */}

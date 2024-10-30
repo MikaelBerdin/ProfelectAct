@@ -82,14 +82,13 @@ const Index = () => {
                                 </button>
 
                                 {/* Sort and Search Bar */}
-                                <div className="flex flex-col md:flex-row items-center md:space-x-4 w-full md:w-auto space-y-2 md:space-y-0 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-lg p-4 shadow-md">
-                                    {/* Sort By Dropdown */}
+                                <div className="flex flex-col md:flex-row items-center md:space-x-4 w-full md:w-auto space-y-2 md:space-y-0">
                                     <div className="flex items-center space-x-2">
                                         <span className="text-gray-700 dark:text-gray-300 font-medium">Sort:</span>
                                         <select
                                             value={sortBy}
                                             onChange={handleSortChange}
-                                            className="bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 rounded-lg px-3 py-2 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-indigo-500 transition"
+                                            className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 rounded-lg px-4 py-2"
                                         >
                                             <option value="">Choose...</option>
                                             <option value="branch_name">Branch Name</option>
@@ -98,7 +97,7 @@ const Index = () => {
                                         </select>
                                         <button
                                             onClick={toggleSortDirection}
-                                            className="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-indigo-400 transition-transform transform hover:scale-110 px-2"
+                                            className="text-gray-700 dark:text-gray-300 px-2"
                                             aria-label="Toggle Sort Direction"
                                         >
                                             {sortDirection === 'asc' ? (
@@ -116,11 +115,11 @@ const Index = () => {
                                             placeholder="Search..."
                                             value={data.search}
                                             onChange={(e) => setData('search', e.target.value)}
-                                            className="bg-white dark:bg-gray-900 dark:text-gray-200 rounded-lg p-2 shadow-inner w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-indigo-500 transition"
+                                            className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 rounded-lg p-2 w-full md:w-auto"
                                         />
                                         <button
                                             type="submit"
-                                            className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 transition transform hover:scale-110 p-2 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-700 dark:to-indigo-700 rounded-full shadow-lg"
+                                            className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 transition transform hover:scale-110"
                                             aria-label="Search"
                                         >
                                             <FontAwesomeIcon icon={faSearch} size="lg" />
