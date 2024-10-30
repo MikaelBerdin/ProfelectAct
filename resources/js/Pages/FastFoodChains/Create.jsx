@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from '@inertiajs/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const Create = ({ onClose }) => {
     const { data, setData, post, errors } = useForm({
@@ -30,28 +32,22 @@ const Create = ({ onClose }) => {
     };
 
     return (
-        <div className="relative p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        <div className="relative p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl max-w-md mx-auto overflow-hidden">
             {/* Close Button */}
             <button
                 onClick={onClose}
-                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-3xl font-bold focus:outline-none"
-                style={{
-                    padding: '0.25rem 0.5rem',
-                    lineHeight: '1',
-                    backgroundColor: 'transparent',
-                    borderRadius: '50%',
-                }}
+                className="absolute top-3 right-3 text-gray-400 hover:text-gray-200 text-2xl font-bold focus:outline-none transform transition hover:scale-110"
             >
-                &times;
+                <FontAwesomeIcon icon={faTimes} />
             </button>
 
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
+            <h2 className="text-2xl font-bold text-gray-100 mb-6 text-center">
                 Add New Fast Food Chain
             </h2>
             <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Branch Name Field */}
                 <div className="flex flex-col">
-                    <label htmlFor="branch_name" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="branch_name" className="text-sm font-medium text-gray-300 mb-2">
                         Branch Name
                     </label>
                     <input
@@ -61,14 +57,14 @@ const Create = ({ onClose }) => {
                         value={data.branch_name}
                         onChange={(e) => setData('branch_name', e.target.value)}
                         required
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                        className="w-full p-3 bg-gray-700 text-gray-200 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                     />
                     {errors.branch_name && <span className="text-red-500 text-sm">{errors.branch_name}</span>}
                 </div>
 
                 {/* Founder Field - Allow only letters */}
                 <div className="flex flex-col">
-                    <label htmlFor="founder" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="founder" className="text-sm font-medium text-gray-300 mb-2">
                         Founder
                     </label>
                     <input
@@ -78,14 +74,14 @@ const Create = ({ onClose }) => {
                         value={data.founder}
                         onChange={(e) => setData('founder', e.target.value.replace(/[^a-zA-Z\s]/g, ''))}
                         required
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                        className="w-full p-3 bg-gray-700 text-gray-200 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                     />
                     {errors.founder && <span className="text-red-500 text-sm">{errors.founder}</span>}
                 </div>
 
                 {/* Location Field */}
                 <div className="flex flex-col">
-                    <label htmlFor="location" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="location" className="text-sm font-medium text-gray-300 mb-2">
                         Location
                     </label>
                     <input
@@ -95,14 +91,14 @@ const Create = ({ onClose }) => {
                         value={data.location}
                         onChange={(e) => setData('location', e.target.value)}
                         required
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                        className="w-full p-3 bg-gray-700 text-gray-200 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                     />
                     {errors.location && <span className="text-red-500 text-sm">{errors.location}</span>}
                 </div>
 
                 {/* Date Founded Field with validation */}
                 <div className="flex flex-col">
-                    <label htmlFor="date_founded" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="date_founded" className="text-sm font-medium text-gray-300 mb-2">
                         Date Founded
                     </label>
                     <input
@@ -111,7 +107,7 @@ const Create = ({ onClose }) => {
                         value={data.date_founded}
                         onChange={(e) => setData('date_founded', e.target.value)}
                         required
-                        className="w-full p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                        className="w-full p-3 bg-gray-700 text-gray-200 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                     />
                     {dateError && <span className="text-red-500 text-sm">{dateError}</span>}
                     {errors.date_founded && <span className="text-red-500 text-sm">{errors.date_founded}</span>}
@@ -119,7 +115,7 @@ const Create = ({ onClose }) => {
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 mt-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800"
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold py-3 mt-4 rounded-full shadow-lg hover:from-blue-700 hover:to-indigo-800 transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                     Add Fast Food Chain
                 </button>
