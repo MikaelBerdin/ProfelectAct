@@ -30,12 +30,26 @@ const Create = ({ onClose }) => {
     };
 
     return (
-        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        <div className="relative p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            {/* Close Button */}
+            <button
+                onClick={onClose}
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-3xl font-bold focus:outline-none"
+                style={{
+                    padding: '0.25rem 0.5rem',
+                    lineHeight: '1',
+                    backgroundColor: 'transparent',
+                    borderRadius: '50%',
+                }}
+            >
+                &times;
+            </button>
+
             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
                 Add New Fast Food Chain
             </h2>
             <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Branch Name Field - Allow only letters */}
+                {/* Branch Name Field */}
                 <div className="flex flex-col">
                     <label htmlFor="branch_name" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Branch Name
@@ -52,7 +66,7 @@ const Create = ({ onClose }) => {
                     {errors.branch_name && <span className="text-red-500 text-sm">{errors.branch_name}</span>}
                 </div>
 
-                {/* Founder Field */}
+                {/* Founder Field - Allow only letters */}
                 <div className="flex flex-col">
                     <label htmlFor="founder" className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Founder

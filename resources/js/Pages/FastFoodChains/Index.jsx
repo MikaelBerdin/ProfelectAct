@@ -72,7 +72,7 @@ const Index = () => {
                         <div className="p-6 bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
 
                             {/* Create New Chain Button */}
-                            <div className="mb-4 flex justify-between items-center">
+                            <div className="mb-4 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
                                 <button
                                     onClick={() => setCreateModalOpen(true)}
                                     className="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-600 dark:hover:bg-blue-700 transition flex items-center space-x-2"
@@ -82,7 +82,7 @@ const Index = () => {
                                 </button>
 
                                 {/* Sort and Search Bar */}
-                                <div className="flex items-center space-x-4">
+                                <div className="flex flex-col md:flex-row items-center md:space-x-4 w-full md:w-auto space-y-2 md:space-y-0">
                                     {/* Sort By Dropdown */}
                                     <div className="flex items-center space-x-2">
                                         <span className="text-gray-700 dark:text-gray-300 font-medium">Sort:</span>
@@ -110,13 +110,13 @@ const Index = () => {
                                     </div>
 
                                     {/* Search Bar */}
-                                    <form onSubmit={handleSearch} className="flex items-center space-x-2">
+                                    <form onSubmit={handleSearch} className="flex items-center space-x-2 w-full md:w-auto">
                                         <input
                                             type="text"
                                             placeholder="Search..."
                                             value={data.search}
                                             onChange={(e) => setData('search', e.target.value)}
-                                            className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 rounded p-2"
+                                            className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 rounded p-2 w-full md:w-auto"
                                         />
                                         <button
                                             type="submit"
@@ -130,15 +130,15 @@ const Index = () => {
                             </div>
 
                             {/* Chain Table */}
-                            <div className="overflow-x-auto border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg">
-                                <table className="min-w-full bg-white dark:bg-gray-800">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg">
                                     <thead className="bg-gray-200 dark:bg-gray-900">
                                         <tr>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Branch Name</th>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Founder</th>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Location</th>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Date Founded</th>
-                                            <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Created By</th> {/* New Column */}
+                                            <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Created By</th>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Created At</th>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Updated At</th>
                                             <th className="p-3 text-left font-semibold text-gray-700 dark:text-gray-300">Actions</th>
@@ -151,7 +151,7 @@ const Index = () => {
                                                 <td className="p-3 text-gray-800 dark:text-gray-200">{chain.founder}</td>
                                                 <td className="p-3 text-gray-800 dark:text-gray-200">{chain.location}</td>
                                                 <td className="p-3 text-gray-800 dark:text-gray-200">{new Date(chain.date_founded).toLocaleDateString()}</td>
-                                                <td className="p-3 text-gray-800 dark:text-gray-200">{chain.creator?.name || 'N/A'}</td> {/* Display creator's name */}
+                                                <td className="p-3 text-gray-800 dark:text-gray-200">{chain.creator?.name || 'N/A'}</td>
                                                 <td className="p-3 text-gray-800 dark:text-gray-200">{new Date(chain.created_at).toLocaleString()}</td>
                                                 <td className="p-3 text-gray-800 dark:text-gray-200">{new Date(chain.updated_at).toLocaleString()}</td>
                                                 <td className="p-3 flex space-x-2">
@@ -177,7 +177,7 @@ const Index = () => {
                             </div>
 
                             {/* Pagination Links */}
-                            <div className="mt-4 flex justify-between items-center">
+                            <div className="mt-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
                                 <span className="text-gray-600 dark:text-gray-200">Page {fastFoodChains.current_page} of {fastFoodChains.last_page}</span>
                                 <div className="flex space-x-1">
                                     {fastFoodChains.links.map((link, index) => (
