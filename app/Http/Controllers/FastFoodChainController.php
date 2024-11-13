@@ -11,7 +11,7 @@ class FastFoodChainController extends Controller
     public function index(Request $request)
 {
     $search = $request->input('search');
-    $sortBy = $request->input('sort_by', 'branch_name'); // Default sort by 'branch_name'
+    $sortBy = $request->input('sort_by'); // Default sort by 'branch_name'
     $sortDirection = $request->input('sort_direction', 'asc'); // Default sort direction 'asc'
 
     $fastFoodChains = FastFoodChain::with('creator') // Load the creator relationship
