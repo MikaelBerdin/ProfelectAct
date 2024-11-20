@@ -18,6 +18,7 @@ const Index = () => {
     const [isCreateModalOpen, setCreateModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [isViewModalOpen, setViewModalOpen] = useState(false);
     const [selectedChain, setSelectedChain] = useState(null);
 
     const handleSearch = (e) => {
@@ -42,6 +43,11 @@ const Index = () => {
             sort_by: sortBy,
             sort_direction: direction,
         }, { preserveState: true });
+    };
+
+    const openViewModal = (chain) => {
+        setSelectedChain(chain);
+        setViewModalOpen(true);
     };
 
     const openEditModal = (chain) => {
@@ -145,11 +151,10 @@ const Index = () => {
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700">
                                         {fastFoodChains.data.map((chain, index) => (
-                                            <tr 
-                                                key={chain.id} 
-                                                className={`hover:bg-blue-50 dark:hover:bg-blue-900 transition duration-300 ease-in-out transform hover:scale-[1.02] ${
-                                                    index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-700'
-                                                }`}
+                                            <tr
+                                                key={chain.id}
+                                                className={`hover:bg-blue-50 dark:hover:bg-blue-900 transition duration-300 ease-in-out transform hover:scale-[1.02] ${index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-700'
+                                                    }`}
                                             >
                                                 <td className="p-4 text-sm text-gray-700 dark:text-gray-200">{chain.branch_name}</td>
                                                 <td className="p-4 text-sm text-gray-700 dark:text-gray-200">{chain.founder}</td>
@@ -159,6 +164,13 @@ const Index = () => {
                                                 <td className="p-4 text-sm text-gray-700 dark:text-gray-200">{new Date(chain.created_at).toLocaleString()}</td>
                                                 <td className="p-4 text-sm text-gray-700 dark:text-gray-200">{new Date(chain.updated_at).toLocaleString()}</td>
                                                 <td className="p-4 flex justify-center space-x-4">
+                                                    <button
+                                                        onClick={() => openViewModal(chain)}
+                                                        className="bg-blue-100 dark:bg-blue-700 text-blue-600 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800 transition rounded-full p-2 shadow-lg"
+                                                        aria-label="View"
+                                                    >
+                                                        <FontAwesomeIcon icon={faSearch} />
+                                                    </button>
                                                     <button
                                                         onClick={() => openEditModal(chain)}
                                                         className="bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition rounded-full p-2 shadow-lg"
@@ -204,9 +216,32 @@ const Index = () => {
                 <Create onClose={() => setCreateModalOpen(false)} />
             </Modal>
             {selectedChain && (
-                <Modal show={isEditModalOpen} onClose={() => setEditModalOpen(false)} maxWidth="md">
-                    <Edit fastFoodChain={selectedChain} onClose={() => setEditModalOpen(false)} />
-                </Modal>
+                <>
+                    <Modal show={isEditModalOpen} onClose={() => setEditModalOpen(false)} maxWidth="md">
+                        <Edit chain={selectedChain} onClose={() => setEditModalOpen(false)} />
+                    </Modal>
+                    <Modal show={isViewModalOpen} onClose={() => setViewModalOpen(false)} maxWidth="md">
+                        <div className="p-6 bg-white dark:bg-gray-800 rounded-md shadow-md">
+                            <h2 className="text-lg font-semibold text-gray-600 dark:text-gray-200 bg-gradient-to-r from-blue-100 dark:from-gray-700 to-gray-200 dark:to-gray-800 p-4 rounded-md">
+                                Chain Details
+                            </h2>
+                            <div className="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                                <p><strong>Branch Name:</strong> {selectedChain.branch_name}</p>
+                                <p><strong>Founder:</strong> {selectedChain.founder}</p>
+                                <p><strong>Location:</strong> {selectedChain.location}</p>
+                                <p><strong>Date Founded:</strong> {new Date(selectedChain.date_founded).toLocaleDateString()}</p>
+                            </div>
+                            <div className="mt-6 flex justify-end">
+                                <button
+                                    onClick={() => setViewModalOpen(false)}
+                                    className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full transition"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </Modal>
+                </>
             )}
             <Modal show={isDeleteModalOpen} onClose={() => setDeleteModalOpen(false)} maxWidth="sm">
                 <div className="p-6 bg-white dark:bg-gray-800 rounded-md">
